@@ -1,118 +1,88 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
-// import 'package:google_fonts/google_fonts.dart';
-
-void main()=>runApp(MyApp());
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+
   @override
-  
-  Widget build (BuildContext context) {
-    
+  Widget build(BuildContext context) {
     return MaterialApp(
-
-      home:Scaffold(
-        backgroundColor:Colors.black,
-
-        body:Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children:<Widget>[
-
-            CircleAvatar(
-              radius: 60,
-              backgroundImage:
-              AssetImage('/Users/qwe/Desktop/flutter_techer_t/public/profileflutter.png'),
-            ),
-
-            SizedBox(
-              height: 30,
-              width: 150,
-              child: Divider(
-                color: Colors.white
-              ),
-            ),
-
-            Text(
-              'Hello there 👋  ',
-              style: TextStyle(
-                fontFamily: 'myfont',
-                fontSize: 30,
-                fontWeight: FontWeight.w500,
-                color: Colors.white,
-              ),
-            ),
-
-            Card(
-              color: Colors.white,
-              margin: EdgeInsets.symmetric(vertical: 10, horizontal: 25),
-              child: Padding(
-                padding: EdgeInsets.all(10),
-                child: Row(
-                  children: <Widget>[
-                    Icon(
-                      Icons.android,
-                      color: Colors.green,
-                    ),
-                    Text (' My name is wasin ')
-                  ],
-                ),  
-              ),
-            ),
-
-            Card(
-              color: Colors.white,
-              margin: EdgeInsets.symmetric(vertical: 10, horizontal: 25),
-              child: Padding(
-                padding: EdgeInsets.all(10),
-                child: Row(
-                  children: <Widget>[
-                    Icon(
-                      Icons.android,
-                      color: Colors.green,
-                    ),
-                    Text(' I am software engineer')
-                  ],
-                ),  
-              ),
-            ),
-
-            Card(
-              color: Colors.white,
-              margin: EdgeInsets.symmetric(vertical: 10, horizontal: 25),
-              child: Padding(
-                padding: EdgeInsets.all(10),
-                child: Row(
-                  children: <Widget>[
-                    Icon(
-                      Icons.android,
-                      color: Colors.green,
-                    ),
-                    Text(' I am learing flutter')
-                  ],
-                ),  
-              ),
-            ),
-
-            Card(
-              color: Colors.white,
-              margin: EdgeInsets.symmetric(vertical: 10, horizontal: 25),
-              child: Padding(
-                padding: EdgeInsets.all(10),
-                child: Row(
-                  children: <Widget>[
-                    Icon(
-                      Icons.android,
-                      color: Colors.green,
-                    ),
-                    Text(' This is my first project')
-                  ],
-                ),  
-              ),
-            ),
-
-          ]
-        )
-      )
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Ask Me Anything'),
+          backgroundColor: Colors.blue[900],
+        ),
+        body: DicePage(
+        ),
+        backgroundColor: Colors.blue,
+      ),
     );
   }
 }
+
+class DicePage extends StatefulWidget {
+  const DicePage({ Key? key }) : super(key: key);
+
+  @override
+  _DicePageState createState() => _DicePageState();
+}
+
+class _DicePageState extends State<DicePage> {
+
+  int ball = 1 ;
+
+  int leftNumber = 1;
+  int rightNumber = 1;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Row(
+        children: <Widget>[
+
+        // ball
+
+       Expanded(
+          child: TextButton(
+            child: Image.asset('/Users/qwe/Documents/GitLab/flutter-teacher-t/flutter_teacher_t/public/ball/ball$ball.png'),
+            onPressed: () {
+              setState(() {
+                ball = Random().nextInt(5) + 1 ;
+              });
+            }
+          ),
+        ),
+        
+        // dice
+  
+        // Expanded(
+        //   child: TextButton(
+        //     child: Image.asset('/Users/qwe/Documents/GitLab/flutter-teacher-t/flutter_teacher_t/public/dice/dice$leftNumber.png'),
+        //     onPressed: () {
+        //       setState(() {
+        //         leftNumber = Random().nextInt(6) + 1 ;
+        //       });
+        //     }
+        //   ),
+        // ),
+          
+        // Expanded(
+        //   child: TextButton(
+        //     child: Image.asset('/Users/qwe/Documents/GitLab/flutter-teacher-t/flutter_teacher_t/public/dice/dice$rightNumber.png'),
+        //     onPressed: () {
+        //       setState(() {
+        //         rightNumber = Random().nextInt(6) + 1 ;
+        //       });
+        //     }
+        //   ),
+        // ),
+
+       ],
+      ),
+    );
+  }
+}
+
+  
