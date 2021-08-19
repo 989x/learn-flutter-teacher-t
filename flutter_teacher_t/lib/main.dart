@@ -1,88 +1,99 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(Quizzler());
 
-class MyApp extends StatelessWidget {
-
+class Quizzler extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: Text('Ask Me Anything'),
-          backgroundColor: Colors.blue[900],
-        ),
-        body: DicePage(
-        ),
-        backgroundColor: Colors.blue,
-      ),
-    );
-  }
-}
-
-class DicePage extends StatefulWidget {
-  const DicePage({ Key? key }) : super(key: key);
-
-  @override
-  _DicePageState createState() => _DicePageState();
-}
-
-class _DicePageState extends State<DicePage> {
-
-  int ball = 1 ;
-
-  int leftNumber = 1;
-  int rightNumber = 1;
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Row(
-        children: <Widget>[
-
-        // ball
-
-       Expanded(
-          child: TextButton(
-            child: Image.asset('/Users/qwe/Documents/GitLab/flutter-teacher-t/flutter_teacher_t/public/ball/ball$ball.png'),
-            onPressed: () {
-              setState(() {
-                ball = Random().nextInt(5) + 1 ;
-              });
-            }
+        backgroundColor: Colors.grey.shade900,
+        body: SafeArea(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10.0),
+            child: QuizPage(),
           ),
         ),
-        
-        // dice
-  
-        // Expanded(
-        //   child: TextButton(
-        //     child: Image.asset('/Users/qwe/Documents/GitLab/flutter-teacher-t/flutter_teacher_t/public/dice/dice$leftNumber.png'),
-        //     onPressed: () {
-        //       setState(() {
-        //         leftNumber = Random().nextInt(6) + 1 ;
-        //       });
-        //     }
-        //   ),
-        // ),
-          
-        // Expanded(
-        //   child: TextButton(
-        //     child: Image.asset('/Users/qwe/Documents/GitLab/flutter-teacher-t/flutter_teacher_t/public/dice/dice$rightNumber.png'),
-        //     onPressed: () {
-        //       setState(() {
-        //         rightNumber = Random().nextInt(6) + 1 ;
-        //       });
-        //     }
-        //   ),
-        // ),
-
-       ],
       ),
     );
   }
 }
 
-  
+class QuizPage extends StatefulWidget {
+  @override
+  _QuizPageState createState() => _QuizPageState();
+}
+
+class _QuizPageState extends State<QuizPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: <Widget>[
+        Expanded(
+          flex: 5,
+          child: Padding(
+            padding: EdgeInsets.all(10.0),
+            child: Center(
+              child: Text(
+                'This is where the question text will go.',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 25.0,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
+        ),
+        Expanded(
+          child: Padding(
+            padding: EdgeInsets.all(15.0),
+            child: TextButton(
+              style: TextButton.styleFrom(
+                primary: Colors.white,
+                backgroundColor: Colors.green,
+              ),
+              child: Text(
+                'True',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20.0,
+                ),
+              ),
+              onPressed: () {
+                //The user picked true.
+              },
+            ),
+          ),
+        ),
+        Expanded(
+          child: Padding(
+            padding: EdgeInsets.all(15.0),
+            child: TextButton(
+              style: TextButton.styleFrom(backgroundColor: Colors.red),
+              child: Text(
+                'False',
+                style: TextStyle(
+                  fontSize: 20.0,
+                  color: Colors.white,
+                ),
+              ),
+              onPressed: () {
+                //The user picked false.
+              },
+            ),
+          ),
+        ),
+        //TODO: Add a Row here as your score keeper
+      ],
+    );
+  }
+}
+
+/*
+question1: 'You can lead a cow down stairs but not up stairs.', false,
+question2: 'Approximately one quarter of human bones are in the feet.', true,
+question3: 'A slug\'s blood is green.', true,
+*/
